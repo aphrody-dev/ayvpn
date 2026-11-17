@@ -3,11 +3,14 @@
 // its provider's health checks and its IP-restricted API calls: only the processes of one dedicated user reach the Internet through Mullvad
 // (policy routing by uid), everything else stays on the host's own network.
 //   bun tools/cluster.ts plan            what would be installed on each role (nothing is read from or written to a host)
-//   bun tools/cluster.ts render <role>   print the ready-to-install config of a role, the private key replaced by <hidden>
-//   bun tools/cluster.ts script <role>   print the shell script that installs it on that host (run it yourself, over ssh, with sudo)
-// Each role needs its own config in .private/cluster/<role>.conf (git-ignored): a Mullvad device key must not be shared by two hosts. Roles
-// come from the hosts block of ay.local.toml (build, test, prod); no host name or address appears in this file or in a tracked one.
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+//   bun tools/cluster.ts retarget <role>   write <role>.<exit>.conf for every exit from the role's own device config <role>.conf (one device key,
+//                                          the relay of each exit read from Mullvad's public relay list)
+//   bun tools/cluster.ts render <role> <exit>   print the ready-to-install config, the private key replaced by <hidden>
+//   bun tools/cluster.ts script <role> <exit>   print the shell script that installs it on that host (run it yourself, over ssh, with sudo)
+// Each role and exit needs its own config in .private/cluster/<role>.<exit>.conf (git-ignored; exits.toml names the exits, today us for the
+// Google services and jp for the crawlers): a Mullvad device key must not be shared by two hosts. Roles come from the hosts block of
+// ay.local.toml (build, test, prod); no host name or address appears in this file or in a tracked one.
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const ROOT = resolve(import.meta.dir, "..");
@@ -49,7 +52,32 @@ export function parse(text: string): Conf {
   };
 }
 
-export type Options = { table?: number; uid?: number; interfaceName?: string };
+export type Relay = { hostname: string; location: string; active: boolean; owned: boolean; ipv4_addr_in: string; public_key: string; weight: number };
+
+/** The relay of an exit: active, in its city, preferring Mullvad-owned servers and then the heaviest weight (the most capacity). */
+export function pickRelay(relays: Relay[], exit: Pick<Exit, "country" | "city">): Relay {
+  const here = relays.filter((relay) => relay.active && relay.location === `${exit.country}-${exit.city}`);
+  if (!here.length) throw new Error(`no active relay in ${exit.country}-${exit.city}`);
+  return [...here].sort((a, b) => Number(b.owned) - Number(a.owned) || b.weight - a.weight || a.hostname.localeCompare(b.hostname))[0]!;
+}
+
+/** The same device on another relay: its peer key and endpoint change, its private key and addresses do not. */
+export function retarget(conf: Conf, relay: Relay): Conf {
+  return { ...conf, publicKey: relay.public_key, endpoint: `${relay.ipv4_addr_in}:51820` };
+}
+
+/** The config as Mullvad writes it, so a file can be rendered, retargeted and written back. */
+export function serialize(conf: Conf): string {
+  return ["[Interface]", `PrivateKey = ${conf.privateKey}`, `Address = ${conf.address.join(",")}`, ...(conf.dns ? [`DNS = ${conf.dns}`] : []), "", "[Peer]", `PublicKey = ${conf.publicKey}`, `AllowedIPs = ${conf.allowedIps}`, `Endpoint = ${conf.endpoint}`, ""].join("\n");
+}
+
+export type Exit = { id: string; purpose: string; country: string; city: string; uid: number; table: number };
+export type Options = { table?: number; uid?: number; interfaceName?: string; user?: string };
+
+export const loadExits = (file = join(ROOT, "exits.toml")): Exit[] => (Bun.TOML.parse(readFileSync(file, "utf8")) as { exit: Exit[] }).exit;
+
+/** The options of one exit: its own table, uid, interface and user, so several tunnels live side by side on one host. */
+export const optionsOf = (exit: Exit): Options => ({ table: exit.table, uid: exit.uid, interfaceName: `wg-${exit.id}`, user: `vpn-${exit.id}` });
 
 /** The host config: a routing table of its own, a rule that sends one uid to it, no DNS change, no route for the host itself. */
 export function render(conf: Conf, hide = true, options: Options = {}): string {
@@ -77,12 +105,13 @@ export function render(conf: Conf, hide = true, options: Options = {}): string {
 export function script(conf: Conf, options: Options = {}): string {
   const name = options.interfaceName ?? "wgmullvad";
   const uid = options.uid ?? 2000;
+  const user = options.user ?? "vpn";
   return [
     "#!/bin/sh",
     "set -eu",
-    `# Installs a Mullvad WireGuard tunnel that only the user 'vpn' (uid ${uid}) uses. SSH and everything else keep the host's own route.`,
+    `# Installs a Mullvad WireGuard tunnel that only the user '${user}' (uid ${uid}) uses. SSH and everything else keep the host's own route.`,
     "command -v wg-quick >/dev/null || { echo 'wireguard-tools is not installed' >&2; exit 1; }",
-    `id vpn >/dev/null 2>&1 || useradd --system --uid ${uid} --no-create-home --shell /usr/sbin/nologin vpn`,
+    `id ${user} >/dev/null 2>&1 || useradd --system --uid ${uid} --no-create-home --shell /usr/sbin/nologin ${user}`,
     "umask 077",
     `cat > /etc/wireguard/${name}.conf <<'CONF'`,
     render(conf, false, options).trimEnd(),
@@ -90,7 +119,7 @@ export function script(conf: Conf, options: Options = {}): string {
     `chmod 600 /etc/wireguard/${name}.conf`,
     `wg-quick up ${name}`,
     "echo 'host:   '$(curl -s --max-time 10 https://am.i.mullvad.net/ip)",
-    "echo 'tunnel: '$(sudo -u vpn curl -s --max-time 10 https://am.i.mullvad.net/connected)",
+    `echo 'tunnel: '$(sudo -u ${user} curl -s --max-time 10 https://am.i.mullvad.net/connected)`,
     `echo "to remove: wg-quick down ${name} && rm /etc/wireguard/${name}.conf"`,
     "",
   ].join("\n");
@@ -104,16 +133,32 @@ const roles = (): string[] => {
 };
 
 if (import.meta.main) {
-  const [command = "plan", role] = Bun.argv.slice(2);
+  const [command = "plan", role, exitId] = Bun.argv.slice(2);
+  const exits = loadExits();
   const configs = existsSync(DIR) ? readdirSync(DIR).filter((file) => file.endsWith(".conf")).map((file) => file.slice(0, -5)) : [];
   if (command === "plan") {
-    for (const name of roles()) console.log(`${name.padEnd(6)} ${configs.includes(name) ? "config ready" : `needs its own device: generate a key on the Mullvad WireGuard page and save the file as .private/cluster/${name}.conf`}`);
+    for (const name of roles()) {
+      for (const exit of exits) {
+        const ready = configs.includes(`${name}.${exit.id}`);
+        console.log(`${name.padEnd(6)} ${exit.id.padEnd(3)} ${exit.purpose.padEnd(7)} ${exit.country}/${exit.city}  ${ready ? "config ready" : `needs its own device: pick ${exit.country}/${exit.city} on the Mullvad WireGuard page and save the file as .private/cluster/${name}.${exit.id}.conf`}`);
+      }
+    }
+  } else if (command === "retarget") {
+    if (!role || !configs.includes(role)) throw new Error(`no .private/cluster/${role ?? "<role>"}.conf (the role's own device config)`);
+    const base = parse(readFileSync(join(DIR, `${role}.conf`), "utf8"));
+    const relays = ((await (await fetch("https://api.mullvad.net/public/relays/wireguard/v2")).json()) as { wireguard: { relays: Relay[] } }).wireguard.relays;
+    for (const exit of exits) {
+      const relay = pickRelay(relays, exit);
+      writeFileSync(join(DIR, `${role}.${exit.id}.conf`), serialize(retarget(base, relay)), { mode: 0o600 });
+      console.log(`${role}.${exit.id}.conf -> ${relay.hostname} (${exit.purpose})`);
+    }
   } else if (command === "render" || command === "script") {
-    if (!role || !configs.includes(role)) throw new Error(`no .private/cluster/${role ?? "<role>"}.conf`);
-    const conf = parse(readFileSync(join(DIR, `${role}.conf`), "utf8"));
-    console.log(command === "render" ? render(conf) : script(conf));
+    const exit = exits.find((entry) => entry.id === exitId);
+    if (!role || !exit || !configs.includes(`${role}.${exit.id}`)) throw new Error(`no .private/cluster/${role ?? "<role>"}.${exitId ?? "<exit>"}.conf`);
+    const conf = parse(readFileSync(join(DIR, `${role}.${exit.id}.conf`), "utf8"));
+    console.log(command === "render" ? render(conf, true, optionsOf(exit)) : script(conf, optionsOf(exit)));
   } else {
-    console.error("usage: cluster.ts plan | render <role> | script <role>");
+    console.error("usage: cluster.ts plan | retarget <role> | render <role> <exit> | script <role> <exit>");
     process.exit(2);
   }
 }

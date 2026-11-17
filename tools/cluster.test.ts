@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { parse, render, script } from "./cluster.ts";
+import { loadExits, optionsOf, parse, pickRelay, render, retarget, script, serialize, type Relay } from "./cluster.ts";
 
 const KEY = "A".repeat(43) + "=";
 const PUBLIC = "B".repeat(43) + "=";
@@ -49,4 +49,32 @@ test("the install script writes the real key at mode 600 and asks nothing of the
   expect(text).toContain("useradd --system --uid 2000");
   expect(text).toContain("wg-quick up wgmullvad");
   expect(text.indexOf("Table = 51820")).toBeGreaterThan(0);
+});
+
+test("each exit has its own table, uid, interface and user, so the US and Japan tunnels live side by side", () => {
+  const exits = loadExits();
+  expect(exits.map((exit) => `${exit.purpose}:${exit.country}/${exit.city}`)).toEqual(["google:us/qas", "crawl:jp/tyo"]);
+  expect(new Set(exits.map((exit) => exit.uid)).size).toBe(exits.length);
+  expect(new Set(exits.map((exit) => exit.table)).size).toBe(exits.length);
+  const text = script(parse(sample), optionsOf(exits[1]!));
+  expect(text).toContain("useradd --system --uid 2002");
+  expect(text).toContain("/etc/wireguard/wg-jp.conf");
+  expect(text).toContain("Table = 51822");
+  expect(text).toContain("ip rule add uidrange 2002-2002 lookup 51822");
+  expect(text).toContain("sudo -u vpn-jp curl");
+  expect(render(parse(sample), true, optionsOf(exits[0]!))).toContain("lookup 51821");
+});
+
+test("a device is retargeted to the best relay of an exit and keeps its own key and addresses", () => {
+  const relay = (hostname: string, location: string, owned: boolean, weight: number, active = true): Relay => ({ hostname, location, active, owned, ipv4_addr_in: "198.51.100." + weight, public_key: "C".repeat(43) + "=", weight });
+  const relays = [relay("us-qas-wg-001", "us-qas", false, 300), relay("us-qas-wg-002", "us-qas", true, 100), relay("us-qas-wg-003", "us-qas", true, 200), relay("us-qas-wg-004", "us-qas", true, 999, false), relay("jp-tyo-wg-001", "jp-tyo", false, 50)];
+  expect(pickRelay(relays, { country: "us", city: "qas" }).hostname).toBe("us-qas-wg-003");
+  expect(pickRelay(relays, { country: "jp", city: "tyo" }).hostname).toBe("jp-tyo-wg-001");
+  expect(() => pickRelay(relays, { country: "fr", city: "par" })).toThrow("no active relay in fr-par");
+  const conf = parse(sample);
+  const moved = retarget(conf, relays[2]!);
+  expect(moved.privateKey).toBe(conf.privateKey);
+  expect(moved.address).toEqual(conf.address);
+  expect(moved.endpoint).toBe("198.51.100.200:51820");
+  expect(parse(serialize(moved))).toEqual(moved);
 });

@@ -1,0 +1,21 @@
+# Where traffic leaves the VPN, by purpose. A desktop switches between exits (tools/exits.ts); a server runs one tunnel per exit and sends only the
+# processes of that exit's user through it (tools/cluster.ts), so SSH and everything else keep the host's own route.
+#   google: the Google services (APIs, search, Workspace) are used from the USA; Ashburn is the US region nearest to Europe and sits beside Google's
+#           us-east data centers.
+#   crawl:  the crawlers of Shenron, Rosegriffon and their siblings see Japanese-facing sites from Japan; Tokyo is the Japanese relay city with the
+#           most capacity.
+[[exit]]
+id = "us"
+purpose = "google"
+country = "us"
+city = "qas"
+uid = 2001
+table = 51821
+
+[[exit]]
+id = "jp"
+purpose = "crawl"
+country = "jp"
+city = "tyo"
+uid = 2002
+table = 51822

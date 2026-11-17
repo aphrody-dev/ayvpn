@@ -12,3 +12,7 @@ The Mullvad app (winget `MullvadVPN.MullvadVPN`, with its daemon and `mullvad` C
 ## Servers
 
 `bun tools/cluster.ts plan|render|script <role>` prepares Mullvad WireGuard for the servers of the fleet (roles `build`, `test`, `prod` of the git-ignored `ay.local.toml`) without putting a server's default route in a tunnel: only the processes of one dedicated user reach the Internet through Mullvad (policy routing by uid), so SSH, health checks and IP-restricted API calls keep the host's own network. Each role needs its own Mullvad device key, saved as `.private/cluster/<role>.conf`. The script it prints is run by a person, on the host, with sudo; nothing here connects to a host.
+
+## Exits
+
+`exits.toml` names where traffic leaves the VPN: the USA (Ashburn) for the Google services and Japan (Tokyo) for the crawlers of Shenron, Rosegriffon and their siblings. `bun tools/exits.ts use google|crawl` points the desktop client at one of them (it connects only with `--connect`). On a server, `bun tools/cluster.ts retarget <role>` writes one config per exit from the role's own device key and the relay list Mullvad publishes, and `script <role> <exit>` prints the installer: one tunnel and one system user per exit (`vpn-us`, `vpn-jp`), policy routing by uid, so a crawler started as `vpn-jp` leaves through Tokyo, a Google client started as `vpn-us` through Ashburn, and SSH and the rest keep the host's own route.
