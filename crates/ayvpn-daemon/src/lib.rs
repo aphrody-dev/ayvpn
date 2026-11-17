@@ -10,6 +10,7 @@ pub mod cli;
 use std::path::PathBuf;
 
 pub use mullvad_management_interface::Error;
+pub use mullvad_types;
 pub use mullvad_types::states::TunnelState;
 
 /// A started daemon; [`run`] drives it until it is told to stop.
@@ -61,6 +62,16 @@ pub async fn run() -> Result<(), String> {
     start().await?.run().await.map_err(|error| error.to_string())
 }
 
+#[cfg(not(target_os = "android"))]
+use mullvad_types::{
+    account::AccountData,
+    device::DeviceState,
+    relay_constraints::RelaySettings,
+    relay_list::RelayList,
+    settings::{DnsOptions, Settings},
+    wireguard::QuantumResistantState,
+};
+
 /// A connection to a running daemon's management IPC.
 #[cfg(not(target_os = "android"))]
 pub struct Client(mullvad_management_interface::client::MullvadProxyClient);
@@ -90,5 +101,65 @@ impl Client {
     /// Asks the daemon to disconnect; `true` when the state changed.
     pub async fn disconnect_tunnel(&mut self) -> Result<bool, Error> {
         self.0.disconnect_tunnel("ayvpn").await
+    }
+
+    /// The daemon's settings: relay constraints, tunnel options, DNS options and the toggles.
+    pub async fn settings(&mut self) -> Result<Settings, Error> {
+        self.0.get_settings().await
+    }
+
+    /// The relay list: countries, their cities and the relays in each.
+    pub async fn relay_list(&mut self) -> Result<RelayList, Error> {
+        self.0.get_relay_locations().await
+    }
+
+    /// Whether a device is logged in, logged out or revoked.
+    pub async fn device(&mut self) -> Result<DeviceState, Error> {
+        self.0.get_device().await
+    }
+
+    /// The expiry of an account, looked up through the daemon's API connection.
+    pub async fn account_data(&mut self, account: String) -> Result<AccountData, Error> {
+        self.0.get_account_data(account).await
+    }
+
+    /// Logs the current device out.
+    pub async fn logout(&mut self) -> Result<(), Error> {
+        self.0.logout_account("ayvpn").await
+    }
+
+    /// Replaces the relay settings, which carry the selected location.
+    pub async fn set_relay_settings(&mut self, settings: RelaySettings) -> Result<(), Error> {
+        self.0.set_relay_settings(settings).await
+    }
+
+    /// Replaces the DNS options, which carry the content blockers.
+    pub async fn set_dns_options(&mut self, options: DnsOptions) -> Result<(), Error> {
+        self.0.set_dns_options(options).await
+    }
+
+    pub async fn set_allow_lan(&mut self, state: bool) -> Result<(), Error> {
+        self.0.set_allow_lan(state).await
+    }
+
+    pub async fn set_lockdown_mode(&mut self, state: bool) -> Result<(), Error> {
+        self.0.set_lockdown_mode(state).await
+    }
+
+    pub async fn set_auto_connect(&mut self, state: bool) -> Result<(), Error> {
+        self.0.set_auto_connect(state).await
+    }
+
+    pub async fn set_enable_ipv6(&mut self, state: bool) -> Result<(), Error> {
+        self.0.set_enable_ipv6(state).await
+    }
+
+    pub async fn set_daita(&mut self, state: bool) -> Result<(), Error> {
+        self.0.set_enable_daita(state).await
+    }
+
+    pub async fn set_quantum_resistant(&mut self, state: bool) -> Result<(), Error> {
+        let state = if state { QuantumResistantState::On } else { QuantumResistantState::Off };
+        self.0.set_quantum_resistant_tunnel(state).await
     }
 }
