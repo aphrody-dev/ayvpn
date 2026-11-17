@@ -19,3 +19,9 @@ test("fork names avoid collisions and the manifest parses back", () => {
   expect(t.meta.org).toBe("o");
   expect(t.fork[0]).toMatchObject({ path: "mullvad/gotatun", role: "consumer" });
 });
+
+test("the manifest names the consumer organization when it differs from the fork organization", () => {
+  const entries = [{ path: "mullvad/gotatun", name: "gotatun", upstream: "mullvad/gotatun", branch: "main" }];
+  expect((Bun.TOML.parse(toToml("forks", entries, "2026-01-01", "app")) as { meta: { consumer?: string } }).meta.consumer).toBe("app");
+  expect((Bun.TOML.parse(toToml("forks", entries, "2026-01-01")) as { meta: { consumer?: string } }).meta.consumer).toBeUndefined();
+});

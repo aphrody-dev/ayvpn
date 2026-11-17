@@ -18,7 +18,7 @@ Forks are the source: `ayvpn.toml` lists the organizations, `tools/discover.ts` 
 5. **Assemble, never copy.** The code of the forks stays in the forks; `ayvpn` holds only the manifest, the generators, the ABI spec, the matrix, the graph tools, and the new Aphrody crates and packages (named `ayvpn-<unit>`), each added only with a working, tested unit.
 
 ## Work order
-1. Forks and submodules: `bun tools/fork.ts`, then `rust-mono`'s `tools/submodules.ts --manifest forks.toml --write`.
+1. Forks and submodules: `bun ../rust-mono/tools/fork.ts --manifest forks.toml`, then `rust-mono`'s `tools/submodules.ts --manifest forks.toml --write`.
 2. Matrix and graph (generated, private outputs): per repository language, licence, build system, entry points, public API surface (tree-sitter through `ay/tools/ts.ts`), dependency graph from `Cargo.lock`, `go.mod` and `package.json`, and a feature matrix across Mullvad, Cloudflare WARP and Brave VPN features.
 3. `ayvpn.abi.toml` and the generated bindings; the route selector crate with tests on recorded measurements; the daemon wiring on `gotatun` and `bun:vpn`.
 4. SDK packages (`@aphrody/ayvpn`, `ayvpn-*` crates), then the website, then packaging for Windows, Linux, Android.

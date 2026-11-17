@@ -2,6 +2,7 @@
 
 [meta]
 org = "aphrody-labs"
+consumer = "aphrody-dev"
 
 [groups]
 mullvad = "forks of the mullvad organization"

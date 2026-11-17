@@ -1,492 +1,492 @@
 [submodule "mullvad/advisory-db"]
 	path = mullvad/advisory-db
-	url = ../advisory-db.git
+	url = ../../aphrody-labs/advisory-db.git
 [submodule "mullvad/android_logger-rs"]
 	path = mullvad/android_logger-rs
-	url = ../android_logger-rs.git
+	url = ../../aphrody-labs/android_logger-rs.git
 [submodule "mullvad/app-rust-network-extension"]
 	path = mullvad/app-rust-network-extension
-	url = ../app-rust-network-extension.git
+	url = ../../aphrody-labs/app-rust-network-extension.git
 [submodule "mullvad/browser-build-public"]
 	path = mullvad/browser-build-public
-	url = ../browser-build-public.git
+	url = ../../aphrody-labs/browser-build-public.git
 [submodule "mullvad/browser-extension"]
 	path = mullvad/browser-extension
-	url = ../browser-extension.git
+	url = ../../aphrody-labs/browser-extension.git
 [submodule "mullvad/circl"]
 	path = mullvad/circl
-	url = ../circl.git
+	url = ../../aphrody-labs/circl.git
 [submodule "mullvad/classic-mceliece-rust"]
 	path = mullvad/classic-mceliece-rust
-	url = ../classic-mceliece-rust.git
+	url = ../../aphrody-labs/classic-mceliece-rust.git
 [submodule "mullvad/coding-guidelines"]
 	path = mullvad/coding-guidelines
-	url = ../coding-guidelines.git
+	url = ../../aphrody-labs/coding-guidelines.git
 [submodule "mullvad/coredns"]
 	path = mullvad/coredns
-	url = ../coredns.git
+	url = ../../aphrody-labs/coredns.git
 [submodule "mullvad/crslmnl"]
 	path = mullvad/crslmnl
-	url = ../crslmnl.git
+	url = ../../aphrody-labs/crslmnl.git
 [submodule "mullvad/debuerreotype"]
 	path = mullvad/debuerreotype
-	url = ../debuerreotype.git
+	url = ../../aphrody-labs/debuerreotype.git
 [submodule "mullvad/derive-try-from-primitive"]
 	path = mullvad/derive-try-from-primitive
-	url = ../derive-try-from-primitive.git
+	url = ../../aphrody-labs/derive-try-from-primitive.git
 [submodule "mullvad/dns-blocklists"]
 	path = mullvad/dns-blocklists
-	url = ../dns-blocklists.git
+	url = ../../aphrody-labs/dns-blocklists.git
 [submodule "mullvad/domain-fronting"]
 	path = mullvad/domain-fronting
-	url = ../domain-fronting.git
+	url = ../../aphrody-labs/domain-fronting.git
 [submodule "mullvad/electron-builder"]
 	path = mullvad/electron-builder
-	url = ../electron-builder.git
+	url = ../../aphrody-labs/electron-builder.git
 [submodule "mullvad/electron-sudo"]
 	path = mullvad/electron-sudo
-	url = ../electron-sudo.git
+	url = ../../aphrody-labs/electron-sudo.git
 [submodule "mullvad/enum-repr"]
 	path = mullvad/enum-repr
-	url = ../enum-repr.git
+	url = ../../aphrody-labs/enum-repr.git
 [submodule "mullvad/fern"]
 	path = mullvad/fern
-	url = ../fern.git
+	url = ../../aphrody-labs/fern.git
 [submodule "mullvad/git-carbon"]
 	path = mullvad/git-carbon
-	url = ../git-carbon.git
+	url = ../../aphrody-labs/git-carbon.git
 [submodule "mullvad/globe-android"]
 	path = mullvad/globe-android
-	url = ../globe-android.git
+	url = ../../aphrody-labs/globe-android.git
 [submodule "mullvad/globe-mesh-builder"]
 	path = mullvad/globe-mesh-builder
-	url = ../globe-mesh-builder.git
+	url = ../../aphrody-labs/globe-mesh-builder.git
 [submodule "mullvad/googletest"]
 	path = mullvad/googletest
-	url = ../googletest.git
+	url = ../../aphrody-labs/googletest.git
 [submodule "mullvad/gotatun"]
 	path = mullvad/gotatun
-	url = ../gotatun.git
+	url = ../../aphrody-labs/gotatun.git
 [submodule "mullvad/grpc-node"]
 	path = mullvad/grpc-node
-	url = ../grpc-node.git
+	url = ../../aphrody-labs/grpc-node.git
 [submodule "mullvad/grpc-sandbox"]
 	path = mullvad/grpc-sandbox
-	url = ../grpc-sandbox.git
+	url = ../../aphrody-labs/grpc-sandbox.git
 [submodule "mullvad/h3"]
 	path = mullvad/h3
-	url = ../h3.git
+	url = ../../aphrody-labs/h3.git
 [submodule "mullvad/hickory-dns"]
 	path = mullvad/hickory-dns
-	url = ../hickory-dns.git
+	url = ../../aphrody-labs/hickory-dns.git
 [submodule "mullvad/hyper"]
 	path = mullvad/hyper
-	url = ../hyper.git
+	url = ../../aphrody-labs/hyper.git
 [submodule "mullvad/hyper-dnscache"]
 	path = mullvad/hyper-dnscache
-	url = ../hyper-dnscache.git
+	url = ../../aphrody-labs/hyper-dnscache.git
 [submodule "mullvad/icmp-socket"]
 	path = mullvad/icmp-socket
-	url = ../icmp-socket.git
+	url = ../../aphrody-labs/icmp-socket.git
 [submodule "mullvad/integration-ansible-packages"]
 	path = mullvad/integration-ansible-packages
-	url = ../integration-ansible-packages.git
+	url = ../../aphrody-labs/integration-ansible-packages.git
 [submodule "mullvad/ipnetwork"]
 	path = mullvad/ipnetwork
-	url = ../ipnetwork.git
+	url = ../../aphrody-labs/ipnetwork.git
 [submodule "mullvad/jitter"]
 	path = mullvad/jitter
-	url = ../jitter.git
+	url = ../../aphrody-labs/jitter.git
 [submodule "mullvad/mullvad-jni-rs"]
 	path = mullvad/mullvad-jni-rs
-	url = ../mullvad-jni-rs.git
+	url = ../../aphrody-labs/mullvad-jni-rs.git
 [submodule "mullvad/jnix"]
 	path = mullvad/jnix
-	url = ../jnix.git
+	url = ../../aphrody-labs/jnix.git
 [submodule "mullvad/jsonrpc"]
 	path = mullvad/jsonrpc
-	url = ../jsonrpc.git
+	url = ../../aphrody-labs/jsonrpc.git
 [submodule "mullvad/kyber"]
 	path = mullvad/kyber
-	url = ../kyber.git
+	url = ../../aphrody-labs/kyber.git
 [submodule "mullvad/mullvad-libc"]
 	path = mullvad/mullvad-libc
-	url = ../mullvad-libc.git
+	url = ../../aphrody-labs/mullvad-libc.git
 [submodule "mullvad/libwfp"]
 	path = mullvad/libwfp
-	url = ../libwfp.git
+	url = ../../aphrody-labs/libwfp.git
 [submodule "mullvad/Linux-Application-List"]
 	path = mullvad/Linux-Application-List
-	url = ../Linux-Application-List.git
+	url = ../../aphrody-labs/Linux-Application-List.git
 [submodule "mullvad/maybenot"]
 	path = mullvad/maybenot
-	url = ../maybenot.git
+	url = ../../aphrody-labs/maybenot.git
 [submodule "mullvad/miow"]
 	path = mullvad/miow
-	url = ../miow.git
+	url = ../../aphrody-labs/miow.git
 [submodule "mullvad/mnl-rs"]
 	path = mullvad/mnl-rs
-	url = ../mnl-rs.git
+	url = ../../aphrody-labs/mnl-rs.git
 [submodule "mullvad/mullvad-browser"]
 	path = mullvad/mullvad-browser
-	url = ../mullvad-browser.git
+	url = ../../aphrody-labs/mullvad-browser.git
 [submodule "mullvad/mullvad-browser-ios"]
 	path = mullvad/mullvad-browser-ios
-	url = ../mullvad-browser-ios.git
+	url = ../../aphrody-labs/mullvad-browser-ios.git
 [submodule "mullvad/mullvad-wg.sh"]
 	path = mullvad/mullvad-wg.sh
-	url = ../mullvad-wg.sh.git
+	url = ../../aphrody-labs/mullvad-wg.sh.git
 [submodule "mullvad/mullvadvpn-app"]
 	path = mullvad/mullvadvpn-app
 	url = ../../aphrody-labs/mullvadvpn-app.git
 [submodule "mullvad/mullvadvpn-app-binaries"]
 	path = mullvad/mullvadvpn-app-binaries
-	url = ../mullvadvpn-app-binaries.git
+	url = ../../aphrody-labs/mullvadvpn-app-binaries.git
 [submodule "mullvad/mullvadvpn-app-screenshots"]
 	path = mullvad/mullvadvpn-app-screenshots
-	url = ../mullvadvpn-app-screenshots.git
+	url = ../../aphrody-labs/mullvadvpn-app-screenshots.git
 [submodule "mullvad/neli"]
 	path = mullvad/neli
-	url = ../neli.git
+	url = ../../aphrody-labs/neli.git
 [submodule "mullvad/netlink"]
 	path = mullvad/netlink
-	url = ../netlink.git
+	url = ../../aphrody-labs/netlink.git
 [submodule "mullvad/netlink-rs"]
 	path = mullvad/netlink-rs
-	url = ../netlink-rs.git
+	url = ../../aphrody-labs/netlink-rs.git
 [submodule "mullvad/nftnl-rs"]
 	path = mullvad/nftnl-rs
-	url = ../nftnl-rs.git
+	url = ../../aphrody-labs/nftnl-rs.git
 [submodule "mullvad/mullvad-nix"]
 	path = mullvad/mullvad-nix
-	url = ../mullvad-nix.git
+	url = ../../aphrody-labs/mullvad-nix.git
 [submodule "mullvad/openvpn"]
 	path = mullvad/openvpn
-	url = ../openvpn.git
+	url = ../../aphrody-labs/openvpn.git
 [submodule "mullvad/opinionated-commit-message"]
 	path = mullvad/opinionated-commit-message
-	url = ../opinionated-commit-message.git
+	url = ../../aphrody-labs/opinionated-commit-message.git
 [submodule "mullvad/oqs-rs-official"]
 	path = mullvad/oqs-rs-official
-	url = ../oqs-rs-official.git
+	url = ../../aphrody-labs/oqs-rs-official.git
 [submodule "mullvad/osv-scanner-action"]
 	path = mullvad/osv-scanner-action
-	url = ../osv-scanner-action.git
+	url = ../../aphrody-labs/osv-scanner-action.git
 [submodule "mullvad/parity-tokio-ipc"]
 	path = mullvad/parity-tokio-ipc
-	url = ../parity-tokio-ipc.git
+	url = ../../aphrody-labs/parity-tokio-ipc.git
 [submodule "mullvad/pfctl-rs"]
 	path = mullvad/pfctl-rs
-	url = ../pfctl-rs.git
+	url = ../../aphrody-labs/pfctl-rs.git
 [submodule "mullvad/mullvad-quinn"]
 	path = mullvad/mullvad-quinn
-	url = ../mullvad-quinn.git
+	url = ../../aphrody-labs/mullvad-quinn.git
 [submodule "mullvad/react-simple-maps"]
 	path = mullvad/react-simple-maps
-	url = ../react-simple-maps.git
+	url = ../../aphrody-labs/react-simple-maps.git
 [submodule "mullvad/reqwest"]
 	path = mullvad/reqwest
-	url = ../reqwest.git
+	url = ../../aphrody-labs/reqwest.git
 [submodule "mullvad/resolv-conf"]
 	path = mullvad/resolv-conf
-	url = ../resolv-conf.git
+	url = ../../aphrody-labs/resolv-conf.git
 [submodule "mullvad/rs-release"]
 	path = mullvad/rs-release
-	url = ../rs-release.git
+	url = ../../aphrody-labs/rs-release.git
 [submodule "mullvad/rsw-proto"]
 	path = mullvad/rsw-proto
-	url = ../rsw-proto.git
+	url = ../../aphrody-labs/rsw-proto.git
 [submodule "mullvad/rsw-public"]
 	path = mullvad/rsw-public
-	url = ../rsw-public.git
+	url = ../../aphrody-labs/rsw-public.git
 [submodule "mullvad/rust-android-gradle"]
 	path = mullvad/rust-android-gradle
-	url = ../rust-android-gradle.git
+	url = ../../aphrody-labs/rust-android-gradle.git
 [submodule "mullvad/rust-cache"]
 	path = mullvad/rust-cache
-	url = ../rust-cache.git
+	url = ../../aphrody-labs/rust-cache.git
 [submodule "mullvad/rust-openssl"]
 	path = mullvad/rust-openssl
-	url = ../rust-openssl.git
+	url = ../../aphrody-labs/rust-openssl.git
 [submodule "mullvad/rust-tun"]
 	path = mullvad/rust-tun
-	url = ../rust-tun.git
+	url = ../../aphrody-labs/rust-tun.git
 [submodule "mullvad/scratch_repo"]
 	path = mullvad/scratch_repo
-	url = ../scratch_repo.git
+	url = ../../aphrody-labs/scratch_repo.git
 [submodule "mullvad/serialport-rs"]
 	path = mullvad/serialport-rs
-	url = ../serialport-rs.git
+	url = ../../aphrody-labs/serialport-rs.git
 [submodule "mullvad/shadowsocks-crypto"]
 	path = mullvad/shadowsocks-crypto
-	url = ../shadowsocks-crypto.git
+	url = ../../aphrody-labs/shadowsocks-crypto.git
 [submodule "mullvad/shadowsocks-rust"]
 	path = mullvad/shadowsocks-rust
-	url = ../shadowsocks-rust.git
+	url = ../../aphrody-labs/shadowsocks-rust.git
 [submodule "mullvad/sigsum-rs"]
 	path = mullvad/sigsum-rs
-	url = ../sigsum-rs.git
+	url = ../../aphrody-labs/sigsum-rs.git
 [submodule "mullvad/socket2"]
 	path = mullvad/socket2
-	url = ../socket2.git
+	url = ../../aphrody-labs/socket2.git
 [submodule "mullvad/statsd-go"]
 	path = mullvad/statsd-go
-	url = ../statsd-go.git
+	url = ../../aphrody-labs/statsd-go.git
 [submodule "mullvad/supply-chain"]
 	path = mullvad/supply-chain
-	url = ../supply-chain.git
+	url = ../../aphrody-labs/supply-chain.git
 [submodule "mullvad/system-configuration-rs"]
 	path = mullvad/system-configuration-rs
-	url = ../system-configuration-rs.git
+	url = ../../aphrody-labs/system-configuration-rs.git
 [submodule "mullvad/tap-windows"]
 	path = mullvad/tap-windows
-	url = ../tap-windows.git
+	url = ../../aphrody-labs/tap-windows.git
 [submodule "mullvad/tap-windows6"]
 	path = mullvad/tap-windows6
-	url = ../tap-windows6.git
+	url = ../../aphrody-labs/tap-windows6.git
 [submodule "mullvad/tokio-core"]
 	path = mullvad/tokio-core
-	url = ../tokio-core.git
+	url = ../../aphrody-labs/tokio-core.git
 [submodule "mullvad/tokio-ping"]
 	path = mullvad/tokio-ping
-	url = ../tokio-ping.git
+	url = ../../aphrody-labs/tokio-ping.git
 [submodule "mullvad/tokio-tfo"]
 	path = mullvad/tokio-tfo
-	url = ../tokio-tfo.git
+	url = ../../aphrody-labs/tokio-tfo.git
 [submodule "mullvad/trust-dns"]
 	path = mullvad/trust-dns
-	url = ../trust-dns.git
+	url = ../../aphrody-labs/trust-dns.git
 [submodule "mullvad/udp-over-tcp"]
 	path = mullvad/udp-over-tcp
-	url = ../udp-over-tcp.git
+	url = ../../aphrody-labs/udp-over-tcp.git
 [submodule "mullvad/unicop"]
 	path = mullvad/unicop
-	url = ../unicop.git
+	url = ../../aphrody-labs/unicop.git
 [submodule "mullvad/wfp-rs"]
 	path = mullvad/wfp-rs
-	url = ../wfp-rs.git
+	url = ../../aphrody-labs/wfp-rs.git
 [submodule "mullvad/wg-tools"]
 	path = mullvad/wg-tools
-	url = ../wg-tools.git
+	url = ../../aphrody-labs/wg-tools.git
 [submodule "mullvad/wgephemeralpeer"]
 	path = mullvad/wgephemeralpeer
-	url = ../wgephemeralpeer.git
+	url = ../../aphrody-labs/wgephemeralpeer.git
 [submodule "mullvad/which-rs"]
 	path = mullvad/which-rs
-	url = ../which-rs.git
+	url = ../../aphrody-labs/which-rs.git
 [submodule "mullvad/win-split-tunnel"]
 	path = mullvad/win-split-tunnel
-	url = ../win-split-tunnel.git
+	url = ../../aphrody-labs/win-split-tunnel.git
 [submodule "mullvad/winapi-rs"]
 	path = mullvad/winapi-rs
-	url = ../winapi-rs.git
+	url = ../../aphrody-labs/winapi-rs.git
 [submodule "mullvad/mullvad-windows-drivers-rs"]
 	path = mullvad/mullvad-windows-drivers-rs
-	url = ../mullvad-windows-drivers-rs.git
+	url = ../../aphrody-labs/mullvad-windows-drivers-rs.git
 [submodule "mullvad/windows-libraries"]
 	path = mullvad/windows-libraries
-	url = ../windows-libraries.git
+	url = ../../aphrody-labs/windows-libraries.git
 [submodule "mullvad/windows-permissions-rs"]
 	path = mullvad/windows-permissions-rs
-	url = ../windows-permissions-rs.git
+	url = ../../aphrody-labs/windows-permissions-rs.git
 [submodule "mullvad/mullvad-windows-rs"]
 	path = mullvad/mullvad-windows-rs
-	url = ../mullvad-windows-rs.git
+	url = ../../aphrody-labs/mullvad-windows-rs.git
 [submodule "mullvad/windows-security"]
 	path = mullvad/windows-security
-	url = ../windows-security.git
+	url = ../../aphrody-labs/windows-security.git
 [submodule "mullvad/windows-service-rs"]
 	path = mullvad/windows-service-rs
-	url = ../windows-service-rs.git
+	url = ../../aphrody-labs/windows-service-rs.git
 [submodule "mullvad/wintun-bindings"]
 	path = mullvad/wintun-bindings
-	url = ../wintun-bindings.git
+	url = ../../aphrody-labs/wintun-bindings.git
 [submodule "mullvad/wireguard-apple"]
 	path = mullvad/wireguard-apple
-	url = ../wireguard-apple.git
+	url = ../../aphrody-labs/wireguard-apple.git
 [submodule "mullvad/mullvad-wireguard-go"]
 	path = mullvad/mullvad-wireguard-go
-	url = ../mullvad-wireguard-go.git
+	url = ../../aphrody-labs/mullvad-wireguard-go.git
 [submodule "mullvad/mullvad-wireguard-rs"]
 	path = mullvad/mullvad-wireguard-rs
-	url = ../mullvad-wireguard-rs.git
+	url = ../../aphrody-labs/mullvad-wireguard-rs.git
 [submodule "cloudflare/apt-transport-cloudflared"]
 	path = cloudflare/apt-transport-cloudflared
-	url = ../apt-transport-cloudflared.git
+	url = ../../aphrody-labs/apt-transport-cloudflared.git
 [submodule "cloudflare/artifact-fs"]
 	path = cloudflare/artifact-fs
-	url = ../artifact-fs.git
+	url = ../../aphrody-labs/artifact-fs.git
 [submodule "cloudflare/boringtun"]
 	path = cloudflare/boringtun
-	url = ../boringtun.git
+	url = ../../aphrody-labs/boringtun.git
 [submodule "cloudflare/cbpfc"]
 	path = cloudflare/cbpfc
-	url = ../cbpfc.git
+	url = ../../aphrody-labs/cbpfc.git
 [submodule "cloudflare/certinel"]
 	path = cloudflare/certinel
-	url = ../certinel.git
+	url = ../../aphrody-labs/certinel.git
 [submodule "cloudflare/cfssl"]
 	path = cloudflare/cfssl
-	url = ../cfssl.git
+	url = ../../aphrody-labs/cfssl.git
 [submodule "cloudflare/cfssl_trust"]
 	path = cloudflare/cfssl_trust
-	url = ../cfssl_trust.git
+	url = ../../aphrody-labs/cfssl_trust.git
 [submodule "cloudflare/cloudflared"]
 	path = cloudflare/cloudflared
-	url = ../cloudflared.git
+	url = ../../aphrody-labs/cloudflared.git
 [submodule "cloudflare/ebpf_exporter"]
 	path = cloudflare/ebpf_exporter
-	url = ../ebpf_exporter.git
+	url = ../../aphrody-labs/ebpf_exporter.git
 [submodule "cloudflare/go"]
 	path = cloudflare/go
-	url = ../go.git
+	url = ../../aphrody-labs/go.git
 [submodule "cloudflare/gokeyless"]
 	path = cloudflare/gokeyless
-	url = ../gokeyless.git
+	url = ../../aphrody-labs/gokeyless.git
 [submodule "cloudflare/matched-data-cli"]
 	path = cloudflare/matched-data-cli
-	url = ../matched-data-cli.git
+	url = ../../aphrody-labs/matched-data-cli.git
 [submodule "cloudflare/mmproxy"]
 	path = cloudflare/mmproxy
-	url = ../mmproxy.git
+	url = ../../aphrody-labs/mmproxy.git
 [submodule "cloudflare/moq-rs"]
 	path = cloudflare/moq-rs
-	url = ../moq-rs.git
+	url = ../../aphrody-labs/moq-rs.git
 [submodule "cloudflare/mpp-proxy"]
 	path = cloudflare/mpp-proxy
-	url = ../mpp-proxy.git
+	url = ../../aphrody-labs/mpp-proxy.git
 [submodule "cloudflare/nel-rs"]
 	path = cloudflare/nel-rs
-	url = ../nel-rs.git
+	url = ../../aphrody-labs/nel-rs.git
 [submodule "cloudflare/networkquality-rs"]
 	path = cloudflare/networkquality-rs
-	url = ../networkquality-rs.git
+	url = ../../aphrody-labs/networkquality-rs.git
 [submodule "cloudflare/ngtcp2"]
 	path = cloudflare/ngtcp2
-	url = ../ngtcp2.git
+	url = ../../aphrody-labs/ngtcp2.git
 [submodule "cloudflare/octopus"]
 	path = cloudflare/octopus
-	url = ../octopus.git
+	url = ../../aphrody-labs/octopus.git
 [submodule "cloudflare/odoh-client-rs"]
 	path = cloudflare/odoh-client-rs
-	url = ../odoh-client-rs.git
+	url = ../../aphrody-labs/odoh-client-rs.git
 [submodule "cloudflare/odoh-rs"]
 	path = cloudflare/odoh-rs
-	url = ../odoh-rs.git
+	url = ../../aphrody-labs/odoh-rs.git
 [submodule "cloudflare/pingora"]
 	path = cloudflare/pingora
-	url = ../pingora.git
+	url = ../../aphrody-labs/pingora.git
 [submodule "cloudflare/pmtud"]
 	path = cloudflare/pmtud
-	url = ../pmtud.git
+	url = ../../aphrody-labs/pmtud.git
 [submodule "cloudflare/pp-browser-extension"]
 	path = cloudflare/pp-browser-extension
-	url = ../pp-browser-extension.git
+	url = ../../aphrody-labs/pp-browser-extension.git
 [submodule "cloudflare/privacy-gateway-client-library"]
 	path = cloudflare/privacy-gateway-client-library
-	url = ../privacy-gateway-client-library.git
+	url = ../../aphrody-labs/privacy-gateway-client-library.git
 [submodule "cloudflare/privacy-gateway-server-go"]
 	path = cloudflare/privacy-gateway-server-go
-	url = ../privacy-gateway-server-go.git
+	url = ../../aphrody-labs/privacy-gateway-server-go.git
 [submodule "cloudflare/privacypass-attester"]
 	path = cloudflare/privacypass-attester
-	url = ../privacypass-attester.git
+	url = ../../aphrody-labs/privacypass-attester.git
 [submodule "cloudflare/privacypass-config"]
 	path = cloudflare/privacypass-config
-	url = ../privacypass-config.git
+	url = ../../aphrody-labs/privacypass-config.git
 [submodule "cloudflare/privacypass-issuer"]
 	path = cloudflare/privacypass-issuer
-	url = ../privacypass-issuer.git
+	url = ../../aphrody-labs/privacypass-issuer.git
 [submodule "cloudflare/privacypass-origin"]
 	path = cloudflare/privacypass-origin
-	url = ../privacypass-origin.git
+	url = ../../aphrody-labs/privacypass-origin.git
 [submodule "cloudflare/privacypass-ts"]
 	path = cloudflare/privacypass-ts
-	url = ../privacypass-ts.git
+	url = ../../aphrody-labs/privacypass-ts.git
 [submodule "cloudflare/proxy-everything"]
 	path = cloudflare/proxy-everything
-	url = ../proxy-everything.git
+	url = ../../aphrody-labs/proxy-everything.git
 [submodule "cloudflare/quiche"]
 	path = cloudflare/quiche
-	url = ../quiche.git
+	url = ../../aphrody-labs/quiche.git
 [submodule "cloudflare/rakelimit"]
 	path = cloudflare/rakelimit
-	url = ../rakelimit.git
+	url = ../../aphrody-labs/rakelimit.git
 [submodule "cloudflare/sandbox-sdk"]
 	path = cloudflare/sandbox-sdk
-	url = ../sandbox-sdk.git
+	url = ../../aphrody-labs/sandbox-sdk.git
 [submodule "cloudflare/speedtest"]
 	path = cloudflare/speedtest
-	url = ../speedtest.git
+	url = ../../aphrody-labs/speedtest.git
 [submodule "cloudflare/svg-hush"]
 	path = cloudflare/svg-hush
-	url = ../svg-hush.git
+	url = ../../aphrody-labs/svg-hush.git
 [submodule "cloudflare/tls-tris"]
 	path = cloudflare/tls-tris
-	url = ../tls-tris.git
+	url = ../../aphrody-labs/tls-tris.git
 [submodule "cloudflare/tubular"]
 	path = cloudflare/tubular
-	url = ../tubular.git
+	url = ../../aphrody-labs/tubular.git
 [submodule "cloudflare/unbound"]
 	path = cloudflare/unbound
-	url = ../unbound.git
+	url = ../../aphrody-labs/unbound.git
 [submodule "cloudflare/wirefilter"]
 	path = cloudflare/wirefilter
-	url = ../wirefilter.git
+	url = ../../aphrody-labs/wirefilter.git
 [submodule "cloudflare/workerd"]
 	path = cloudflare/workerd
-	url = ../workerd.git
+	url = ../../aphrody-labs/workerd.git
 [submodule "cloudflare/workerd-cxx"]
 	path = cloudflare/workerd-cxx
-	url = ../workerd-cxx.git
+	url = ../../aphrody-labs/workerd-cxx.git
 [submodule "cloudflare/xdpcap"]
 	path = cloudflare/xdpcap
-	url = ../xdpcap.git
+	url = ../../aphrody-labs/xdpcap.git
 [submodule "brave/adblock-rust"]
 	path = brave/adblock-rust
-	url = ../adblock-rust.git
+	url = ../../aphrody-labs/adblock-rust.git
 [submodule "brave/brave-browser"]
 	path = brave/brave-browser
-	url = ../brave-browser.git
+	url = ../../aphrody-labs/brave-browser.git
 [submodule "brave/brave-core"]
 	path = brave/brave-core
-	url = ../brave-core.git
+	url = ../../aphrody-labs/brave-core.git
 [submodule "brave/bx402"]
 	path = brave/bx402
-	url = ../bx402.git
+	url = ../../aphrody-labs/bx402.git
 [submodule "brave/constellation-processors"]
 	path = brave/constellation-processors
-	url = ../constellation-processors.git
+	url = ../../aphrody-labs/constellation-processors.git
 [submodule "brave/figma-api-exporter"]
 	path = brave/figma-api-exporter
-	url = ../figma-api-exporter.git
+	url = ../../aphrody-labs/figma-api-exporter.git
 [submodule "brave/go-sync"]
 	path = brave/go-sync
-	url = ../go-sync.git
+	url = ../../aphrody-labs/go-sync.git
 [submodule "brave/go-update"]
 	path = brave/go-update
-	url = ../go-update.git
+	url = ../../aphrody-labs/go-update.git
 [submodule "brave/omaha"]
 	path = brave/omaha
-	url = ../omaha.git
+	url = ../../aphrody-labs/omaha.git
 [submodule "brave/sniproxy"]
 	path = brave/sniproxy
-	url = ../sniproxy.git
+	url = ../../aphrody-labs/sniproxy.git
 [submodule "brave/store-brave-com"]
 	path = brave/store-brave-com
-	url = ../store-brave-com.git
+	url = ../../aphrody-labs/store-brave-com.git
 [submodule "brave/transparency-report-generator"]
 	path = brave/transparency-report-generator
-	url = ../transparency-report-generator.git
+	url = ../../aphrody-labs/transparency-report-generator.git
 [submodule "brave/webkit-content-filter-validator"]
 	path = brave/webkit-content-filter-validator
-	url = ../webkit-content-filter-validator.git
+	url = ../../aphrody-labs/webkit-content-filter-validator.git
 [submodule "google/gopacket"]
 	path = google/gopacket
-	url = ../gopacket.git
+	url = ../../aphrody-labs/gopacket.git
 [submodule "google/nftables"]
 	path = google/nftables
-	url = ../nftables.git
+	url = ../../aphrody-labs/nftables.git
 [submodule "google/google-quiche"]
 	path = google/google-quiche
-	url = ../google-quiche.git
+	url = ../../aphrody-labs/google-quiche.git
