@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "name": "ayvpn",
+  "spec_sha256": "ffd1847bd9ecf28ff5109ebaec20ff4f7930d1bc4d1a7b2a28275a98eabe0585",
+  "constants": [
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_OK",
+      "value": 0,
+      "doc": "done, nothing changed"
+    },
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_CHANGED",
+      "value": 1,
+      "doc": "done, the tunnel state changed"
+    },
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_ERR_IPC",
+      "value": -1,
+      "doc": "the daemon is not reachable"
+    },
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_ERR_INPUT",
+      "value": -2,
+      "doc": "an argument is invalid (null pointer, bad account)"
+    },
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_ERR_DAEMON",
+      "value": -3,
+      "doc": "the daemon refused the request"
+    },
+    {
+      "group": "status",
+      "type": "i32",
+      "name": "AYVPN_ERR_RUNTIME",
+      "value": -4,
+      "doc": "the async runtime could not start"
+    },
+    {
+      "group": "state",
+      "type": "u32",
+      "name": "AYVPN_STATE_DISCONNECTED",
+      "value": 0
+    },
+    {
+      "group": "state",
+      "type": "u32",
+      "name": "AYVPN_STATE_CONNECTING",
+      "value": 1
+    },
+    {
+      "group": "state",
+      "type": "u32",
+      "name": "AYVPN_STATE_CONNECTED",
+      "value": 2
+    },
+    {
+      "group": "state",
+      "type": "u32",
+      "name": "AYVPN_STATE_DISCONNECTING",
+      "value": 3
+    },
+    {
+      "group": "state",
+      "type": "u32",
+      "name": "AYVPN_STATE_ERROR",
+      "value": 4
+    }
+  ],
+  "functions": [
+    {
+      "name": "ayvpn_abi_version",
+      "returns": "u32",
+      "params": [],
+      "doc": "The ABI version the library implements."
+    },
+    {
+      "name": "ayvpn_state",
+      "returns": "i32",
+      "params": [
+        [
+          "out_state",
+          "*mut u32"
+        ]
+      ],
+      "doc": "Writes the current AYVPN_STATE_* to `out_state`."
+    },
+    {
+      "name": "ayvpn_connect",
+      "returns": "i32",
+      "params": [],
+      "doc": "Asks the daemon to connect with its current settings."
+    },
+    {
+      "name": "ayvpn_disconnect",
+      "returns": "i32",
+      "params": [],
+      "doc": "Asks the daemon to disconnect."
+    },
+    {
+      "name": "ayvpn_login",
+      "returns": "i32",
+      "params": [
+        [
+          "account",
+          "*const u8"
+        ],
+        [
+          "len",
+          "usize"
+        ]
+      ],
+      "doc": "Logs in with a sixteen-digit account number; the number is never logged or echoed."
+    },
+    {
+      "name": "ayvpn_daemon_run",
+      "returns": "i32",
+      "params": [],
+      "doc": "Runs the daemon in the calling thread until it stops."
+    }
+  ]
+}

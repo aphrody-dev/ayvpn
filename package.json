@@ -1,0 +1,10 @@
+{
+  "name": "ayvpn",
+  "private": true,
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "abi": "bun ../ay/tools/abi.ts --spec abi/ayvpn.abi.toml --root .",
+    "check": "bun ../ay/tools/abi.ts --spec abi/ayvpn.abi.toml --root . --check && bun test"
+  }
+}

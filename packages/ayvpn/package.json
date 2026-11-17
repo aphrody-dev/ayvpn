@@ -1,0 +1,10 @@
+{
+  "name": "@aphrody/ayvpn",
+  "version": "0.1.0",
+  "description": "Bun SDK of the Aphrody VPN: the C ABI of abi/ayvpn.abi.toml through bun:ffi.",
+  "type": "module",
+  "module": "index.ts",
+  "exports": { ".": "./index.ts" },
+  "license": "GPL-3.0-or-later",
+  "files": ["index.ts", "../../abi/gen/ayvpn_abi.ts"]
+}

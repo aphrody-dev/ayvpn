@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+# The forks keep their own workspaces; without this, path dependencies under this root become members.
+exclude = ["brave", "cloudflare", "google", "mullvad"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-or-later"
+publish = false
+
+[workspace.dependencies]
+mullvad-api = { path = "mullvad/mullvadvpn-app/mullvad-api" }
+mullvad-daemon = { path = "mullvad/mullvadvpn-app/mullvad-daemon", default-features = false, features = ["embedded"] }
+mullvad-management-interface = { path = "mullvad/mullvadvpn-app/mullvad-management-interface" }
+mullvad-paths = { path = "mullvad/mullvadvpn-app/mullvad-paths" }
+mullvad-types = { path = "mullvad/mullvadvpn-app/mullvad-types" }
+tokio = { version = "1", features = ["rt", "macros"] }
+
+[workspace.lints.rust]
+unsafe_op_in_unsafe_fn = "deny"

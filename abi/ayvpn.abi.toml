@@ -1,0 +1,109 @@
+# The Aphrody VPN C ABI, version 1: the one source of truth for every language binding.
+# ay's tools/abi.ts generates from it the C header, the Rust declarations, the Bun FFI module, the
+# Python ctypes module, a JSON form and docs/abi.md, and checks with tree-sitter that the generated
+# files and crates/ayvpn-ffi still say what this file says.
+#   types: u8 u32 i32 u64 usize void, pointers as "*const T" or "*mut T".
+version = 1
+name = "ayvpn"
+title = "Aphrody VPN: daemon control ABI, version 1."
+intro = [
+  "A thin, blocking C ABI over the daemon's management IPC, for hosts that cannot speak it.",
+  "Every call opens its own connection; no handle, no global state, no allocation crosses it.",
+  "Generated from abi/ayvpn.abi.toml: edit the spec, not the generated files.",
+]
+
+[library]
+noun = "ayvpn-ffi library"
+functions = "Blocking calls over the daemon's management IPC; each opens and closes its own connection."
+lang = "rust"
+src = "crates/ayvpn-ffi/src"
+
+[output]
+header = "include/ayvpn.h"
+dir = "abi/gen"
+doc = "docs/abi.md"
+
+[[group]]
+id = "status"
+comment = "Return codes. Zero or positive is success; negative values are errors."
+type = "i32"
+  [[group.const]]
+  name = "AYVPN_OK"
+  value = 0
+  doc = "done, nothing changed"
+  [[group.const]]
+  name = "AYVPN_CHANGED"
+  value = 1
+  doc = "done, the tunnel state changed"
+  [[group.const]]
+  name = "AYVPN_ERR_IPC"
+  value = -1
+  doc = "the daemon is not reachable"
+  [[group.const]]
+  name = "AYVPN_ERR_INPUT"
+  value = -2
+  doc = "an argument is invalid (null pointer, bad account)"
+  [[group.const]]
+  name = "AYVPN_ERR_DAEMON"
+  value = -3
+  doc = "the daemon refused the request"
+  [[group.const]]
+  name = "AYVPN_ERR_RUNTIME"
+  value = -4
+  doc = "the async runtime could not start"
+
+[[group]]
+id = "state"
+comment = "Tunnel states, the variants of Mullvad's TunnelState."
+type = "u32"
+  [[group.const]]
+  name = "AYVPN_STATE_DISCONNECTED"
+  value = 0
+  [[group.const]]
+  name = "AYVPN_STATE_CONNECTING"
+  value = 1
+  [[group.const]]
+  name = "AYVPN_STATE_CONNECTED"
+  value = 2
+  [[group.const]]
+  name = "AYVPN_STATE_DISCONNECTING"
+  value = 3
+  [[group.const]]
+  name = "AYVPN_STATE_ERROR"
+  value = 4
+
+[[function]]
+name = "ayvpn_abi_version"
+returns = "u32"
+params = []
+doc = "The ABI version the library implements."
+
+[[function]]
+name = "ayvpn_state"
+returns = "i32"
+params = [["out_state", "*mut u32"]]
+doc = "Writes the current AYVPN_STATE_* to `out_state`."
+
+[[function]]
+name = "ayvpn_connect"
+returns = "i32"
+params = []
+doc = "Asks the daemon to connect with its current settings."
+
+[[function]]
+name = "ayvpn_disconnect"
+returns = "i32"
+params = []
+doc = "Asks the daemon to disconnect."
+
+[[function]]
+name = "ayvpn_login"
+returns = "i32"
+params = [["account", "*const u8"], ["len", "usize"]]
+doc = "Logs in with a sixteen-digit account number; the number is never logged or echoed."
+
+[[function]]
+name = "ayvpn_daemon_run"
+returns = "i32"
+params = []
+doc = "Runs the daemon in the calling thread until it stops."
