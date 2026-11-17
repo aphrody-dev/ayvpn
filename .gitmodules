@@ -138,7 +138,7 @@
 	url = ../mullvad-wg.sh.git
 [submodule "mullvad/mullvadvpn-app"]
 	path = mullvad/mullvadvpn-app
-	url = ../mullvadvpn-app.git
+	url = ../../aphrody-labs/mullvadvpn-app.git
 [submodule "mullvad/mullvadvpn-app-binaries"]
 	path = mullvad/mullvadvpn-app-binaries
 	url = ../mullvadvpn-app-binaries.git
