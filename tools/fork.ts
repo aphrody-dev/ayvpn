@@ -14,12 +14,23 @@ const todo = m.fork.filter((f) => !have.has(f.name.toLowerCase()));
 console.log(`${m.fork.length} forks in the manifest, ${m.fork.length - todo.length} exist, ${todo.length} to create`);
 if (process.argv.includes("--dry-run")) process.exit(0);
 let failed = 0;
+const parentOf = (name: string): string => {
+  const p = gh("api", `repos/${org}/${name}`, "--jq", ".parent.full_name // empty");
+  return p.exitCode === 0 ? p.stdout.toString().trim().toLowerCase() : "";
+};
 for (const f of todo) {
-  const p = gh("repo", "fork", f.upstream, "--org", org, "--fork-name", f.name, "--clone=false");
-  const ok = p.exitCode === 0;
+  let ok = false;
+  let why = "";
+  for (let attempt = 0; attempt < 5 && !ok; attempt++) {
+    const p = gh("repo", "fork", f.upstream, "--org", org, "--fork-name", f.name, "--clone=false");
+    ok = p.exitCode === 0 || parentOf(f.name) === f.upstream.toLowerCase();
+    why = p.stderr.toString().trim().slice(0, 100);
+    if (!ok && /too quickly|being forked|rate limit/i.test(why)) await Bun.sleep(30_000 * (attempt + 1));
+    else if (!ok) break;
+  }
   if (!ok) failed++;
-  console.log(`${ok ? "forked" : "FAILED"} ${f.upstream} -> ${org}/${f.name}${ok ? "" : ` ${p.stderr.toString().trim().slice(0, 100)}`}`);
-  await Bun.sleep(2500);
+  console.log(`${ok ? "forked" : "FAILED"} ${f.upstream} -> ${org}/${f.name}${ok ? "" : ` ${why}`}`);
+  await Bun.sleep(8000);
 }
 console.log(`done, ${failed} failed`);
 process.exit(failed ? 1 : 0);

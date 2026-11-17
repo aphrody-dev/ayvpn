@@ -1,0 +1,132 @@
+# The VPN feature catalog: what a complete Aphrody VPN needs, each with the patterns that evidence it in a repository's name, description, topics, README
+# or file tree. tools/matrix.ts crosses it with every fork (private output). Add a row when a capability matters; a pattern is a case-insensitive regex.
+[[feature]]
+id = "wireguard"
+group = "tunnel"
+title = "WireGuard tunnel"
+pattern = "wireguard|wg-quick|boringtun|gotatun|wireguard-go"
+[[feature]]
+id = "openvpn"
+group = "tunnel"
+title = "OpenVPN tunnel"
+pattern = "openvpn"
+[[feature]]
+id = "quic-masque"
+group = "tunnel"
+title = "QUIC, HTTP/3 and MASQUE transport"
+pattern = "quic|http/?3|masque|h3\\b"
+[[feature]]
+id = "obfuscation"
+group = "tunnel"
+title = "Obfuscation: Shadowsocks, UDP-over-TCP, pluggable transports"
+pattern = "shadowsocks|udp-over-tcp|udp2tcp|obfs|pluggable transport|v2ray|lwo"
+[[feature]]
+id = "domain-fronting"
+group = "tunnel"
+title = "Domain fronting and CDN-carried transport"
+pattern = "domain.?fronting|cdn|front(ed|ing)"
+[[feature]]
+id = "post-quantum"
+group = "tunnel"
+title = "Post-quantum key exchange"
+pattern = "post.?quantum|kyber|ml-kem|pqc|ephemeral peer"
+[[feature]]
+id = "traffic-defense"
+group = "tunnel"
+title = "Traffic-analysis defenses (padding, DAITA, Maybenot)"
+pattern = "maybenot|daita|traffic.analysis|padding"
+[[feature]]
+id = "multihop"
+group = "privacy"
+title = "Multihop routing"
+pattern = "multi.?hop|double.?vpn|entry relay|exit relay"
+[[feature]]
+id = "kill-switch"
+group = "privacy"
+title = "Kill switch and lockdown mode"
+pattern = "kill.?switch|lockdown|block when disconnected|leak"
+[[feature]]
+id = "split-tunnel"
+group = "privacy"
+title = "Split tunneling"
+pattern = "split.?tunnel"
+[[feature]]
+id = "dns-filtering"
+group = "privacy"
+title = "DNS filtering and ad/tracker blocking"
+pattern = "dns.?(block|filter)|adblock|ad.?block|blocklist|shields|tracker"
+[[feature]]
+id = "dns-resolver"
+group = "network"
+title = "DNS server, resolver, DoH/DoT"
+pattern = "coredns|trust-dns|hickory|resolver|dns-over|\\bdoh\\b|\\bdot\\b|dns server"
+[[feature]]
+id = "firewall"
+group = "network"
+title = "Host firewall integration (nftables, pf, WFP)"
+pattern = "nftables|nftnl|libmnl|pfctl|\\bpf\\b|wfp|windows filtering platform|iptables"
+[[feature]]
+id = "proxy-lb"
+group = "network"
+title = "Reverse proxy and load balancing"
+pattern = "pingora|proxy|load.?balanc"
+[[feature]]
+id = "tunnel-ingress"
+group = "network"
+title = "Inbound tunnels and zero-trust access"
+pattern = "cloudflared|zero.?trust|argo tunnel|ingress"
+[[feature]]
+id = "netstack"
+group = "network"
+title = "Userspace network stack"
+pattern = "netstack|gvisor|smoltcp|userspace (network|tcp)"
+[[feature]]
+id = "relay-selection"
+group = "routing"
+title = "Relay selection and latency measurement"
+pattern = "relay (list|selector|selection)|latency|rtt|ping|nearest"
+[[feature]]
+id = "daemon-api"
+group = "interfaces"
+title = "Daemon with a management API (gRPC, JSON-RPC, socket)"
+pattern = "daemon|management interface|grpc|json-?rpc|ipc"
+[[feature]]
+id = "gui"
+group = "interfaces"
+title = "Graphical client"
+pattern = "electron|gui|desktop app|react|swiftui|jetpack|kotlin"
+[[feature]]
+id = "cli"
+group = "interfaces"
+title = "Command-line client"
+pattern = "\\bcli\\b|command.?line"
+[[feature]]
+id = "sdk-ffi"
+group = "interfaces"
+title = "SDK, bindings and FFI"
+pattern = "\\bsdk\\b|bindings?|\\bffi\\b|jni|jnix|cbindgen|uniffi|wasm"
+[[feature]]
+id = "windows"
+group = "platform"
+title = "Windows support (service, driver, WFP, split-tunnel driver)"
+pattern = "windows|win32|wintun|\\.sys\\b"
+[[feature]]
+id = "macos-ios"
+group = "platform"
+title = "macOS and iOS support"
+pattern = "macos|darwin|ios\\b|swift|networkextension|apple"
+[[feature]]
+id = "android"
+group = "platform"
+title = "Android support"
+pattern = "android|kotlin|vpnservice"
+[[feature]]
+id = "linux"
+group = "platform"
+title = "Linux support (netlink, cgroups, systemd)"
+pattern = "linux|netlink|cgroup|systemd"
+[[feature]]
+id = "browser"
+group = "client surfaces"
+title = "Browser and extension"
+pattern = "browser|extension|tor\\b|firefox|chromium"

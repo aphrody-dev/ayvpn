@@ -56,6 +56,7 @@ if (import.meta.main) {
     for (const r of select(src, repos).sort((a, b) => a.name.localeCompare(b.name))) {
       const upstream = `${src.org}/${r.name}`;
       const name = forkName(src.org, r.name, taken);
+      taken.set(name.toLowerCase(), upstream.toLowerCase());
       entries.push({ path: `${src.org}/${name}`, name, upstream, branch: r.defaultBranchRef?.name ?? "main" });
     }
   }
