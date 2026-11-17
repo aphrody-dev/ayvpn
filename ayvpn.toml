@@ -1,0 +1,31 @@
+# Identity and source registry of ayvpn: the Aphrody VPN assembled from forks of the Mullvad, Cloudflare and Brave organizations.
+# tools/discover.ts reads this file and the live GitHub API and writes forks.toml (the manifest of rust-mono's fork tooling, reused as is).
+[product]
+name = "ayvpn"
+repo = "aphrody-dev/ayvpn"
+forks = "aphrody-labs"       # every upstream is forked here and consumed as a submodule with a relative URL
+
+# One source per upstream organization. `take = "all"`: every non-archived repository. `take = "match"`: non-archived repositories in one of
+# `languages` whose name, description or topics match `pattern` (case-insensitive). `extra` names repositories taken whatever the rule says.
+[[source]]
+org = "mullvad"
+take = "all"
+[[source]]
+org = "cloudflare"
+take = "match"
+languages = ["Rust", "Go", "C", "C++", "TypeScript"]
+pattern = "vpn|wireguard|tunnel|proxy|dns|quic|tls|network|firewall|warp|privacy|zero.?trust|socks|http3|masque|packet|cloudflared|boringtun|workerd|pingora|doh|ech|bpf|xdp|dns-over|trust"
+extra = ["cloudflare/boringtun", "cloudflare/cloudflared", "cloudflare/quiche", "cloudflare/workerd", "cloudflare/pingora"]
+[[source]]
+org = "brave"
+take = "match"
+languages = ["Rust", "Go", "C", "C++", "TypeScript", "Kotlin", "Swift"]
+pattern = "vpn|adblock|shields|tor|dns|privacy|network|proxy|tunnel|brave-core|brave-browser|brave-ios|brave-android|ipfs|sync|wireguard|filter"
+extra = ["brave/brave-core", "brave/brave-browser", "brave/adblock-rust"]
+# Google's network building blocks that replace what Google Cloud sells (VPC, VPN, DNS, load balancing) when run on our own infrastructure.
+[[source]]
+org = "google"
+take = "match"
+languages = []
+pattern = "^$"
+extra = ["google/gvisor", "google/gopacket", "google/nftables", "google/quiche", "google/netstack"]
