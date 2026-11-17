@@ -8,3 +8,7 @@ The Aphrody VPN: one tunnel stack (Rust, Go, C, C++, TypeScript) assembled from 
 ## Desktop setup
 
 The Mullvad app (winget `MullvadVPN.MullvadVPN`, with its daemon and `mullvad` CLI) and the Mullvad Browser (`MullvadVPN.MullvadBrowser`) are the desktop install; the GPUI client (`aphrody-vpn`) talks to the same daemon. `bun tools/setup.ts plan` lists the best-practice settings (quantum-resistant tunnel, DAITA, IPv6, DNS blockers, LAN access, automatic obfuscation, the nearest relays) and `apply` sets them; it never connects the tunnel or turns on lockdown mode or auto-connect. The account stays in the git-ignored `.secrets/` and reaches the CLI through stdin.
+
+## Servers
+
+`bun tools/cluster.ts plan|render|script <role>` prepares Mullvad WireGuard for the servers of the fleet (roles `build`, `test`, `prod` of the git-ignored `ay.local.toml`) without putting a server's default route in a tunnel: only the processes of one dedicated user reach the Internet through Mullvad (policy routing by uid), so SSH, health checks and IP-restricted API calls keep the host's own network. Each role needs its own Mullvad device key, saved as `.private/cluster/<role>.conf`. The script it prints is run by a person, on the host, with sudo; nothing here connects to a host.
