@@ -1,0 +1,10 @@
+[test]
+# The forks are upstream code with their own test suites: never part of this repository's tests.
+pathIgnorePatterns = ["mullvad/**", "cloudflare/**", "brave/**", "google/**"]
+
+[install]
+linker = "isolated"
+globalStore = true
+exact = true
+saveTextLockfile = true
+minimumReleaseAge = 259200
